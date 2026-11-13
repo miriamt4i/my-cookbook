@@ -1,0 +1,30 @@
+/*
+ * Footer
+ */
+footer {
+  background-color: var(--theme-color-primary);
+  display: flex;
+  color: var(--theme-color-secondary);
+}
+
+footer .footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem 0 4rem;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 767px) {
+  footer .footer-content{
+    flex-direction: row;
+    padding: 4rem 0 6rem;
+    gap: 0;
+  }
+}
+
+.footer-logo {
+  font-family: var(--theme-font-heading);
+  font-size: 2rem;
+}

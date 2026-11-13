@@ -1,0 +1,18 @@
+/*
+ * Constants
+ *
+ * Keep colors and reusable theme values here.
+ */
+:root {
+  --theme-color-primary: #E6DBF8;
+  --theme-color-secondary: #3F2A52;
+  
+  --theme-transition: all 0.3s ease-in-out;
+
+  --theme-font-body: "Nunito", sans-serif;
+  --theme-font-heading: "Satisfy", sans-serif;
+
+  --theme-font-size-base: 16px;
+  --theme-line-height-body: 1.5;
+  --theme-line-height-heading: 1.1;
+}

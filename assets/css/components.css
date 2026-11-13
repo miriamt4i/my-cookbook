@@ -1,0 +1,112 @@
+/*
+ * Components
+ */
+.intro-image {
+  display: block;
+}
+
+/*** Button ***/
+
+.btn-primary,
+.btn-secondary {
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.btn-primary {
+  background-color: var(--theme-color-primary);
+  color: var(--theme-color-secondary);
+  --bs-btn-border-color: var(--theme-color-secondary);
+
+  --bs-btn-hover-bg: var(--theme-color-secondary);
+  --bs-btn-hover-border-color: var(--theme-color-secondary);
+  --bs-btn-hover-color: var(--theme-color-primary);
+}
+
+.btn-secondary {
+  background-color: var(--theme-color-secondary);
+  color: var(--theme-color-primary);
+  --bs-btn-border-color: var(--theme-color-primary);
+
+  --bs-btn-hover-bg: var(--theme-color-primary);
+--bs-btn-hover-border-color: var(--theme-color-primary);
+--bs-btn-hover-color: var(--theme-color-secondary);
+}
+
+
+/*** Image Slider ***/
+
+.projecttheme-image-slider .carousel-inner {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.projecttheme-image-slider .carousel-item,
+.projecttheme-image-slider .carousel-item img {
+  height: 100%;
+}
+
+.projecttheme-image-slider .carousel-item img {
+  object-fit: cover;
+}
+
+/*** Startseiten-Links: Recipes und About Me ***/
+
+.home-links {
+  justify-content: center;
+}
+
+.home-links > div {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+.home-links .card {
+  width: min(100%, 239px);
+  min-height: 67px;
+  margin-inline: auto;
+  justify-content: center;
+  background-color: rgb(255 255 255 / 50%);
+  border: 3px solid var(--theme-color-secondary);
+  border-radius: 20px;
+  color: var(--theme-color-secondary);
+}
+
+.home-links .card-body {
+  flex: 0 0 auto;
+  padding: 16px 24px;
+  text-align: center;
+}
+
+.home-links .card h2 {
+  font-family: var(--theme-font-body);
+}
+
+.home-links .card:focus-visible {
+  outline: 2px solid var(--theme-color-secondary);
+  outline-offset: 4px;
+}
+
+@media (min-width: 768px) {
+  .home-links > div {
+    width: 50%;
+  }
+
+  .home-links .card {
+    width: min(100%, 420px);
+    min-height: 120px;
+  }
+}
+
+.home-links .home-link-description {
+  max-width: 239px;
+  margin-top: 15px;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .home-links .home-link-description {
+    max-width: 420px;
+  }
+}
