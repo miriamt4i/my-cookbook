@@ -85,6 +85,9 @@ while (have_rows('page_modules')) : the_row();
         case 'category_links':
       get_template_part('template-parts/flex/layout', 'category-links');
       break;
+      case 'recipe_list':
+      get_template_part('template-parts/flex/layout', 'recipe-list');
+       break;
 
     case 'project-highlight':
       get_template_part('template-parts/flex/layout', 'google-map'); break;

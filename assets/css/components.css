@@ -29,10 +29,9 @@
   --bs-btn-border-color: var(--theme-color-primary);
 
   --bs-btn-hover-bg: var(--theme-color-primary);
---bs-btn-hover-border-color: var(--theme-color-primary);
---bs-btn-hover-color: var(--theme-color-secondary);
+  --bs-btn-hover-border-color: var(--theme-color-primary);
+  --bs-btn-hover-color: var(--theme-color-secondary);
 }
-
 
 /*** Image Slider ***/
 
@@ -50,39 +49,57 @@
   object-fit: cover;
 }
 
-/*** Startseiten-Links: Recipes und About Me ***/
+/*** Startseiten-Teaser: Recipes und About Me ***/
 
 .home-links {
   justify-content: center;
 }
 
 .home-links > div {
+  display: flex;
   flex: 0 0 auto;
   width: 100%;
 }
 
-.home-links .card {
-  width: min(100%, 239px);
-  min-height: 67px;
+.home-links .home-teaser {
+  width: min(100%, 360px);
+  height: 100%;
   margin-inline: auto;
-  justify-content: center;
+  padding: 24px;
+  align-items: center;
   background-color: rgb(255 255 255 / 50%);
   border: 3px solid var(--theme-color-secondary);
   border-radius: 20px;
   color: var(--theme-color-secondary);
-}
-
-.home-links .card-body {
-  flex: 0 0 auto;
-  padding: 16px 24px;
   text-align: center;
 }
 
-.home-links .card h2 {
-  font-family: var(--theme-font-body);
+.home-links .home-teaser .card-img-top {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 16px;
+  object-fit: contain;
+  border-radius: 0;
 }
 
-.home-links .card:focus-visible {
+.home-links .home-teaser .card-body {
+  width: 100%;
+  padding: 0;
+}
+
+.home-links .home-teaser h2 {
+  font-family: var(--theme-font-body);
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.home-links .home-link-description {
+  margin-top: 8px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.home-links .home-teaser:focus-visible {
   outline: 2px solid var(--theme-color-secondary);
   outline-offset: 4px;
 }
@@ -92,21 +109,156 @@
     width: 50%;
   }
 
-  .home-links .card {
+  .home-links .home-teaser {
     width: min(100%, 420px);
-    min-height: 120px;
   }
 }
 
-.home-links .home-link-description {
-  max-width: 239px;
-  margin-top: 15px;
-  font-size: 1rem;
-  line-height: 1.2;
+/*** Illustration auf der Startseite ***/
+
+.home .intro-image {
+  width: min(100%, 320px);
+  height: auto;
+  max-height: 35svh;
+  object-fit: contain;
+  margin-inline: auto;
+}
+/*** Sternchen zwischen Intro und Teaser-Karten ***/
+
+.home-links::before {
+  content: "";
+  display: block;
+  flex: 0 0 100%;
+  height: 48px;
+  margin-bottom: 96px;
+  background-image: url("../images/stars-divider.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+/*** Kompaktere Abstände auf der Startseite ***/
+
+.home section:has(.intro-title) {
+  padding-top: 24px !important;
+  padding-bottom: 24px !important;
 }
 
-@media (min-width: 768px) {
-  .home-links .home-link-description {
-    max-width: 420px;
+.home .row:has(> div > .intro-title) {
+  --bs-gutter-y: 24px;
+}
+
+.home section:has(.home-links) {
+  padding-top: 24px !important;
+}
+/*** Rezeptliste ***/
+
+.recipe-list {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.recipe-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 96px;
+  padding: 16px 24px;
+  background-color: rgb(255 255 255 / 50%);
+  border: 2px solid var(--theme-color-secondary);
+  border-radius: 20px;
+  color: var(--theme-color-secondary);
+}
+
+.recipe-card-content {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.recipe-card-title {
+  margin: 0;
+  font-family: var(--theme-font-body);
+  font-size: 1.125rem;
+  line-height: 1.3;
+}
+
+.recipe-card-time {
+  margin: 6px 0 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.recipe-card-image {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.recipe-card:focus-visible {
+  outline: 2px solid var(--theme-color-secondary);
+  outline-offset: 4px;
+}
+/*** Rezeptdetails ***/
+
+.recipe-detail-title {
+  font-family: var(--theme-font-body);
+}
+
+.recipe-detail-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/*** Bild links – Text rechts ***/
+
+.image-text {
+  max-width: 1000px;
+  margin-inline: auto;
+}
+
+.image-text-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center 35%;
+  border-radius: 0;
+}
+
+.image-text-title {
+  font-family: var(--theme-font-body);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.image-text .rte {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+/*** Sternchen neben dem Bild auf Desktop ***/
+
+@media (min-width: 1200px) {
+  .image-text {
+    position: relative;
+  }
+
+  .image-text::before {
+    content: "";
+    position: absolute;
+    top: 16px;
+    left: -72px;
+    width: 64px;
+    height: 320px;
+    background-image: url("../images/stars-side.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+    pointer-events: none;
   }
 }
