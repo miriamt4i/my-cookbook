@@ -6,49 +6,52 @@ $ingredients  = get_sub_field('ingredients');
 $instructions = get_sub_field('instructions');
 ?>
 
-<div class="row align-items-center g-4 mb-4">
-  <div class="col">
-    <?php if ($title) : ?>
-      <h1 class="recipe-detail-title mb-2">
-        <?php echo esc_html($title); ?>
-      </h1>
-    <?php endif; ?>
+<div class="recipe-detail">
 
-    <?php if (is_numeric($prep_time)) : ?>
-      <p class="mb-0">
-        <strong>Prep time:</strong>
-        <?php echo esc_html($prep_time); ?> min
-      </p>
+  <div class="recipe-detail-header">
+    <div class="recipe-detail-heading">
+      <?php if (is_numeric($prep_time)) : ?>
+        <p class="recipe-detail-time">
+          <?php echo esc_html($prep_time); ?> min
+        </p>
+      <?php endif; ?>
+
+      <?php if ($title) : ?>
+        <h1 class="recipe-detail-title">
+          <?php echo esc_html($title); ?>
+        </h1>
+      <?php endif; ?>
+    </div>
+
+    <?php if ($image_id) : ?>
+      <?php
+      echo wp_get_attachment_image(
+        $image_id,
+        'medium_large',
+        false,
+        array(
+          'class' => 'recipe-detail-image',
+          'alt'   => '',
+        )
+      );
+      ?>
     <?php endif; ?>
   </div>
 
-  <?php if ($image_id) : ?>
-    <div class="col-4 col-md-2">
-      <?php echo wp_get_attachment_image(
-        $image_id,
-        'medium',
-        false,
-        [
-          'class' => 'recipe-detail-image img-fluid',
-          'alt'   => '',
-        ]
-      ); ?>
-    </div>
-  <?php endif; ?>
-</div>
+  <div class="recipe-detail-body">
+    <?php if ($ingredients) : ?>
+      <div class="recipe-detail-ingredients">
+        <h2>Ingredients</h2>
+        <?php echo wp_kses_post($ingredients); ?>
+      </div>
+    <?php endif; ?>
 
-<div class="row g-4">
-  <?php if ($ingredients) : ?>
-    <div class="col-12 col-md-5">
-      <h2>Ingredients</h2>
-      <?php echo wp_kses_post($ingredients); ?>
-    </div>
-  <?php endif; ?>
+    <?php if ($instructions) : ?>
+      <div class="recipe-detail-instructions">
+        <h2>Instruction</h2>
+        <?php echo wp_kses_post($instructions); ?>
+      </div>
+    <?php endif; ?>
+  </div>
 
-  <?php if ($instructions) : ?>
-    <div class="col-12 col-md-7">
-      <h2>Instructions</h2>
-      <?php echo wp_kses_post($instructions); ?>
-    </div>
-  <?php endif; ?>
 </div>

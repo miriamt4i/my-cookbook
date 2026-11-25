@@ -6,9 +6,18 @@ if (empty($categories)) {
 }
 
 $is_front_page = is_front_page();
+$is_categories_page = is_page('recipe-categories');
+
+$wrapper_class = 'row g-4';
+
+if ($is_front_page) {
+  $wrapper_class .= ' home-links';
+} elseif ($is_categories_page) {
+  $wrapper_class = 'category-overview';
+}
 ?>
 
-<div class="row g-4<?php echo $is_front_page ? ' home-links' : ''; ?>">
+<div class="<?php echo esc_attr($wrapper_class); ?>">
   <?php foreach ($categories as $category) : ?>
     <?php
     $link = $category['link'] ?? [];
@@ -22,18 +31,36 @@ $is_front_page = is_front_page();
     }
 
     $new_tab = ($link['target'] ?? '') === '_blank';
+
+    $column_class = $is_categories_page
+      ? 'category-overview-item'
+      : 'col-12 col-sm-6 col-lg-3';
+
+    $card_class = 'card text-decoration-none';
+
+    if ($is_front_page) {
+      $card_class .= ' home-teaser';
+    } elseif ($is_categories_page) {
+      $card_class .= ' category-teaser h-100';
+    } else {
+      $card_class .= ' h-100';
+    }
     ?>
 
-    <div class="col-12 col-sm-6 col-lg-3">
-      <a class="card text-decoration-none<?php echo $is_front_page ? ' home-teaser' : ' h-100'; ?>"
+    <div class="<?php echo esc_attr($column_class); ?>">
+      <a class="<?php echo esc_attr($card_class); ?>"
          href="<?php echo $url; ?>"
-         <?php if ($new_tab) : ?>target="_blank" rel="noopener noreferrer"<?php endif; ?>>
+         <?php if ($new_tab) : ?>
+           target="_blank" rel="noopener noreferrer"
+         <?php endif; ?>>
 
         <?php if ($image_id) : ?>
-          <?php echo wp_get_attachment_image($image_id, 'medium_large', false, [
+          <?php
+          echo wp_get_attachment_image($image_id, 'medium_large', false, [
             'class' => 'card-img-top',
             'alt'   => '',
-          ]); ?>
+          ]);
+          ?>
         <?php endif; ?>
 
         <div class="card-body">
@@ -41,13 +68,12 @@ $is_front_page = is_front_page();
             <?php echo esc_html($title); ?>
           </h2>
 
-          <?php if ($is_front_page && $description !== '') : ?>
-            <p class="home-link-description mb-0">
+          <?php if (($is_front_page || $is_categories_page) && $description !== '') : ?>
+            <p class="<?php echo $is_front_page ? 'home-link-description' : 'category-description'; ?> mb-0">
               <?php echo esc_html($description); ?>
             </p>
           <?php endif; ?>
         </div>
-
       </a>
     </div>
   <?php endforeach; ?>
